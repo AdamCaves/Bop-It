@@ -1,5 +1,9 @@
 //Matching button LED task game!
 bool matching_task() {
+  //Display task
+  lcd.setCursor(3, 0);
+  lcd.print(matchString);
+  
   bool matching_success = true;
   int pinArray[] = {RED, YELLOW, BLUE};
   

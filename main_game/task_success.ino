@@ -9,4 +9,5 @@ void task_success() {
     noTone(SPEAKER);
   }
   digitalWrite(SUCCESS_LIGHT, LOW);
+  SCORE ++;
 }

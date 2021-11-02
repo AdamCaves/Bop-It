@@ -1,8 +1,12 @@
 //Joystick task game!
 bool joystick_task() {
+  //Display task
+  lcd.setCursor(3, 0);
+  lcd.print(joystickString);
+  
   bool joystick_success = true;
   int xMap, yMap, xValue, yValue;
-  String flickArray[] = {"up", "down", "left", "right"};
+  char *flickArray[] = {"up", "down", "left", "right"};
   int thresh = 25;
   int maxbound = 50;
   //randomize the flick call
