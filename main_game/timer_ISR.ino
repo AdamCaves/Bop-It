@@ -1,6 +1,3 @@
-int timeAllowed = 0xFF; // Variable to store allowed time
-bool timerFail = 0; // Bool for tracking timer working
-
 void timerSetup()
 {
 //  // Configure Timer 1
@@ -18,6 +15,7 @@ void timerSetup()
 
 void startTimer() // Starts timer
 {
+  timerFail = 0; // Ensure timer fail is not set
   TCNT1 = 0;// Ensure count is reset
   TCCR1B |= 0x5; // Put timer in start mdoe with 1024 prescale
   Serial.print("Start timer");
@@ -28,7 +26,7 @@ void stopTimer() // To be called after a task is successfully completed
   TCCR1B = 0; // Put timer in stop mode
   TCNT1 = 0; // Reset count
   decrementTime(); // Call function to decrement time
-  TIFR1 &= ~(OCF1A); // Clear IFG just in case
+  TIFR1 &= ~(1 << OCF1A); // Clear IFG just in case
 }
 
 void decrementTime()
@@ -37,8 +35,9 @@ void decrementTime()
   OCR1AH = timeAllowed; // Update max time
 }
 
-void resetTimer() // To be called after a complete game is won or a task is failed and the game is lost
+void resetTimer() // To be called at the beginning of a new game - first thing that should be done
 {
+  timerFail = 0; // Reset timer fail
   TCCR1B = 0; // Put timer in stop mode
   TCNT1 = 0; // Reset count
   timeAllowed = 0xFF; // Reset allowed time to max
@@ -48,10 +47,10 @@ void resetTimer() // To be called after a complete game is won or a task is fail
 
 ISR(TIMER1_COMPA_vect) // ISR for Timer 1
 {
-  if ((TIFR1 && OCF1A) // Ensure that correct IFG triggered
+  if (OCF1A) // Ensure that correct IFG triggered
   {
-    resetTimer(); // Reset the timer for the next game
-    TIFR1 &= ~(1 << OCF1A); // Clear IFG
-    timer_fail(); // Call timer_fail
+    timerFail = 1; // Set the timer fail flag
+    Serial.print("Timer IFG triggered");
+    stopTimer(); // Stop the timer and clear the IFG
   }
 }

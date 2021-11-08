@@ -75,11 +75,11 @@ bool matching_task() {
     // Check for first button press
     while(!digitalRead(pinArray[0])) {
       if (digitalRead(pinArray[1]) || digitalRead(pinArray[2])) {
-  //      Serial.print(digitalRead(pinArray[0]));
-  //      Serial.print(digitalRead(pinArray[1]));
-  //      Serial.print(digitalRead(pinArray[2]));
-        Serial.print("\nExit 1");
-        return false;
+        return task_fail();
+      }
+      if (timerFail)
+      {
+        return timer_fail();
       }
     }
     // Wait for release
@@ -91,8 +91,11 @@ bool matching_task() {
     // Check for second button press
     while(!digitalRead(pinArray[1])) {
       if (digitalRead(pinArray[0]) || digitalRead(pinArray[2])) {
-        Serial.print("\nExit 2");
-        return false;
+        return task_fail();
+      }
+      if (timerFail)
+      {
+        return timer_fail();
       }
     }
   
@@ -104,8 +107,11 @@ bool matching_task() {
     // Check for third button press
     while(!digitalRead(pinArray[2])) {
       if (digitalRead(pinArray[0]) || digitalRead(pinArray[1])) {
-        Serial.print("\nExit 3");
-        return false;
+        return task_fail();
+      }
+      if (timerFail)
+      {
+        return timer_fail();
       }
     }
   

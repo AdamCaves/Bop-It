@@ -22,6 +22,9 @@ int SPEAKER = 3;
 int SCORE = 0;
 bool proceed;
 
+int timeAllowed = 0xFF; // Variable to store allowed time
+bool timerFail = 0; // Bool for tracking timer fails
+
 char matchString[] = "MATCH IT!";
 char joystickString[] = "FLICK IT!";
 char spinString[] = "SPIN IT!";

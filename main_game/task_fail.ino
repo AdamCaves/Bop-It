@@ -1,6 +1,5 @@
 //Output when task is NOT completed successfully!
-void task_fail() {
-  resetTimer();
+bool task_fail() {
   digitalWrite(FAIL_LIGHT, HIGH);
   for (int i = 0; i < 2; i ++) {
     int dur = 1000/noteDurations[i];
@@ -10,12 +9,24 @@ void task_fail() {
     noTone(SPEAKER);
   }
   digitalWrite(FAIL_LIGHT, LOW);
-  Serial.print("Input fail");
+  resetTimer();
+  Serial.print("Input fail"); // These should be replaced with LCD commands
+  return 0;
 }
 
-void timer_fail()
+bool timer_fail()
 {
   // Put same things in but diplay "out of time" on LCD so user knows why they lost
+  digitalWrite(FAIL_LIGHT, HIGH);
+  for (int i = 0; i < 2; i ++) {
+    int dur = 1000/noteDurations[i];
+    tone(SPEAKER, fail_tone[i], dur);
+    int pause = dur*1.30;
+    delay(pause);
+    noTone(SPEAKER);
+  }
+  digitalWrite(FAIL_LIGHT, LOW);
   resetTimer();
-  Serial.print("Timer fail");
+  Serial.print("Timer fail"); // These should be replaced with LCD commands
+  return 0;
 }
