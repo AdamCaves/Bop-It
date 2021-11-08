@@ -1,16 +1,16 @@
 bool chooseTask() {
   // put your main code here, to run repeatedly:
-  int cTask = rand(0,4);
-  bool rVal = 0;
+  int cTask = random(0,3);
+  bool r = 0;
   switch (cTask)
   {
-    case 1:
+    case 0:
         r = joystick_task();
     break;
-    case 2:
+    case 1:
         r = matching_task();
     break;
-    case 3:
+    case 2:
         //r = tilt_task();
     break;
   }

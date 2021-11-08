@@ -50,9 +50,21 @@ void setup() {
   pinMode(SPEAKER, OUTPUT);
 
   Serial.begin(9600); // open the serial port at 9600 bps:
+
+  timerSetup();
+  
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   //HAVE NOT WRITTEN MAIN CODE YET... MUST FINISH SUB FUNCTIONS FIRST
+  bool k = matching_task();
+  delay(1000);
+  Serial.print("\n");
+  Serial.print(k);
+  while (k==0)
+  {
+    k = digitalRead(RED);
+  }
+  delay(500);
 }
