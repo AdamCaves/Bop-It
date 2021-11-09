@@ -1,5 +1,5 @@
 //Output when task is successfully completed!
-void task_success() {
+bool task_success() {
   digitalWrite(SUCCESS_LIGHT, HIGH);
   for (int i = 0; i < 2; i ++) {
     int dur = 1000/noteDurations[i];
@@ -10,4 +10,8 @@ void task_success() {
   }
   digitalWrite(SUCCESS_LIGHT, LOW);
   SCORE ++;
+  if (SCORE >= 5) {
+    Serial.print("YOU WIN!");
+  }
+  return 1;
 }

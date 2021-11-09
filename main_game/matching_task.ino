@@ -126,7 +126,7 @@ bool matching_task() {
 
   Serial.print("\nEnd");
   
-  return true;
+  return task_success();
   delay(250);
 } 
  

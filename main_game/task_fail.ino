@@ -11,6 +11,7 @@ bool task_fail() {
   digitalWrite(FAIL_LIGHT, LOW);
   resetTimer();
   Serial.print("Input fail"); // These should be replaced with LCD commands
+  SCORE = 0;
   return 0;
 }
 
@@ -28,5 +29,6 @@ bool timer_fail()
   digitalWrite(FAIL_LIGHT, LOW);
   resetTimer();
   Serial.print("Timer fail"); // These should be replaced with LCD commands
+  SCORE = 0;
   return 0;
 }
