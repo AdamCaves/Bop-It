@@ -61,7 +61,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   //HAVE NOT WRITTEN MAIN CODE YET... MUST FINISH SUB FUNCTIONS FIRST
-  bool k = matching_task();
+  bool k = choose_task();
   delay(1000);
   Serial.print("\n");
   Serial.print(k);
