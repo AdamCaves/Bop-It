@@ -79,9 +79,10 @@ void loop() {
   // put your main code here, to run repeatedly:
   //HAVE NOT WRITTEN MAIN CODE YET... MUST FINISH SUB FUNCTIONS FIRST
   bool k = whip_task();
+  //bool k = joystick_task();
   delay(1000);
-  Serial.print("\n");
-  Serial.print(k);
+//  Serial.print("\n");
+//  Serial.print(k);
   while (k==0)
   {
     k = digitalRead(RED);
