@@ -12,7 +12,9 @@ bool joystick_task() {
   
   //randomize the flick call
   int joyid = random(0, 4);
+  Serial.print("\n\n");
   Serial.print(flickArray[joyid]);
+  Serial.print("\n\n");
 
   //start the timer
   startTimer();
