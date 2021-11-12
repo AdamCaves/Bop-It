@@ -18,7 +18,7 @@ void startTimer() // Starts timer
   timerFail = 0; // Ensure timer fail is not set
   TCNT1 = 0;// Ensure count is reset
   TCCR1B |= 0x5; // Put timer in start mdoe with 1024 prescale
-  Serial.print("Start timer");
+  Serial.print(timeAllowed);
 }
 
 void stopTimer() // To be called after a task is successfully completed
