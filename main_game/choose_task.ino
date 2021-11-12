@@ -11,7 +11,7 @@ bool choose_task() {
         r = matching_task();
     break;
     case 2:
-        //r = tilt_task();
+        r = whip_task();
     break;
   }
 
