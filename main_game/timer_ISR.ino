@@ -50,7 +50,6 @@ ISR(TIMER1_COMPA_vect) // ISR for Timer 1
   if (OCF1A) // Ensure that correct IFG triggered
   {
     timerFail = 1; // Set the timer fail flag
-    Serial.print("Timer IFG triggered");
     stopTimer(); // Stop the timer and clear the IFG
   }
 }

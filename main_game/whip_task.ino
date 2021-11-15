@@ -24,9 +24,7 @@ bool whip_task() {
   //start the timer
   startTimer();
 
-  
-
-  while(delta>35)
+  while(delta<35)
   {
     Serial.print("/nI am here/n");
     
@@ -52,10 +50,6 @@ bool whip_task() {
     Serial.print("\n\n");
     //return 1;
 
-    if(delta > 35)
-    {
-      return task_success();
-    }
   //check for timer
     if (timerFail)
     {
@@ -64,10 +58,10 @@ bool whip_task() {
   }
 
   
- // Stop timer count here
- stopTimer();
+  // Stop timer count here
+  stopTimer();
 
-  
+  return task_success();
 
 
   
