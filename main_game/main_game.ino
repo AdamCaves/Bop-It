@@ -25,6 +25,10 @@ int SPEAKER = 3;
 int SCORE = 0;
 bool proceed;
 
+//joystick global variables
+int thresh = 25;
+int maxbound = 50;
+  
 int timeAllowed = 0xFF; // Variable to store allowed time
 bool timerFail = 0; // Bool for tracking timer fails
 
@@ -78,7 +82,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   //HAVE NOT WRITTEN MAIN CODE YET... MUST FINISH SUB FUNCTIONS FIRST
-  bool k = whip_task();
+  bool k = choose_task();
   //bool k = joystick_task();
   delay(1000);
 //  Serial.print("\n");

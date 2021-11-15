@@ -1,6 +1,6 @@
 bool choose_task() {
   // put your main code here, to run repeatedly:
-  int cTask = random(0,2);
+  int cTask = random(0,3);
   bool r = 0;
   switch (cTask)
   {

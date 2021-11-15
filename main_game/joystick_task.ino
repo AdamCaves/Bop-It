@@ -7,15 +7,25 @@ bool joystick_task() {
   bool joystick_success = true;
   int xMap, yMap, xValue, yValue;
   char *flickArray[] = {"up", "down", "left", "right"};
-  int thresh = 25;
-  int maxbound = 50;
+  
   
   //randomize the flick call
   int joyid = random(0, 4);
   Serial.print("\n\n");
   Serial.print(flickArray[joyid]);
   Serial.print("\n\n");
-
+  
+  //CALIBRATE GYRO
+  int count = 10;
+  int cal1 = 0;
+  for (int i = 0; i < count; i ++) 
+  {
+    mpu.update();
+    cal1 += mpu.getAngleZ();
+    //Serial.print(mpu.getAngleZ());
+  }
+  cal1 = cal1/count;
+  
   //start the timer
   startTimer();
   

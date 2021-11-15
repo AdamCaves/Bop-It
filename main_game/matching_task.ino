@@ -65,6 +65,17 @@ bool matching_task() {
   pinMode(YELLOW, INPUT);
   delay(del1);
 
+  //CALIBRATE GYRO
+  int count = 10;
+  int cal1 = 0;
+  for (int i = 0; i < count; i ++) 
+  {
+    mpu.update();
+    cal1 += mpu.getAngleZ();
+    //Serial.print(mpu.getAngleZ());
+  }
+  cal1 = cal1/count;
+  
   startTimer(); // start the timer
 
   Serial.print("\n");
