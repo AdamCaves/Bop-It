@@ -28,6 +28,11 @@ bool whip_task() {
   {
     Serial.print("/nI am here/n");
     
+    //check wrong inputs
+    if (check_wrong_match() || check_wrong_joystick()) {
+      return task_fail();
+    }
+    
     //check for inputs
     for (int i = 0; i < count; i ++) 
     {
