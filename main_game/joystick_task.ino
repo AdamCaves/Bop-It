@@ -1,8 +1,5 @@
 //Joystick task game!
 bool joystick_task() {
-  //Display task
-  lcd.setCursor(3, 0);
-  lcd.print(joystickString);
   
   bool joystick_success = true;
   int xMap, yMap, xValue, yValue;
@@ -14,6 +11,13 @@ bool joystick_task() {
   Serial.print("\n\n");
   Serial.print(flickArray[joyid]);
   Serial.print("\n\n");
+
+  //Display task
+  lcd.clear();
+  lcd.setCursor(3, 1);
+  lcd.print(joystickString + *flickArray[joyid]);
+  lcd.setCursor(8, 0);
+  lcd.print("SCORE: " + SCORE);
   
   //CALIBRATE GYRO
   int count = 10;
@@ -33,7 +37,7 @@ bool joystick_task() {
   if (flickArray[joyid] == "up") {
     while (map(analogRead(joyY), 0, 1023, maxbound, -maxbound) < thresh) {
       //check for incorrect inputs
-      if (map(analogRead(joyY), 0, 1023, 50, -50) < -thresh || map(analogRead(joyX), 0, 1023, 50, -50) < -thresh || map(analogRead(joyX), 0, 1023, 50, -50) > thresh) {
+      if (map(analogRead(joyY), 0, 1023, 50, -50) < -thresh || map(analogRead(joyX), 0, 1023, 50, -50) < -thresh || map(analogRead(joyX), 0, 1023, 50, -50) > thresh || check_wrong_match() || check_wrong_whip(cal1)) {
         return task_fail();
       }
       //check for timer
@@ -46,7 +50,7 @@ bool joystick_task() {
   } else if (flickArray[joyid] == "down") {
     while (map(analogRead(joyY), 0, 1023, maxbound, -maxbound) > -thresh) {
       //check for incorrect inputs
-      if (map(analogRead(joyY), 0, 1023, 50, -50) > thresh || map(analogRead(joyX), 0, 1023, 50, -50) < -thresh || map(analogRead(joyX), 0, 1023, 50, -50) > thresh) {
+      if (map(analogRead(joyY), 0, 1023, 50, -50) > thresh || map(analogRead(joyX), 0, 1023, 50, -50) < -thresh || map(analogRead(joyX), 0, 1023, 50, -50) > thresh  || check_wrong_match() || check_wrong_whip(cal1)) {
         return task_fail();
       }
       //check for timer
@@ -59,7 +63,7 @@ bool joystick_task() {
   } else if (flickArray[joyid] == "left") {
     while (map(analogRead(joyX), 0, 1023, maxbound, -maxbound) > -thresh) {
       //check for incorrect inputs
-      if (map(analogRead(joyX), 0, 1023, 50, -50) > thresh || map(analogRead(joyY), 0, 1023, 50, -50) < -thresh || map(analogRead(joyY), 0, 1023, 50, -50) > thresh) {
+      if (map(analogRead(joyX), 0, 1023, 50, -50) > thresh || map(analogRead(joyY), 0, 1023, 50, -50) < -thresh || map(analogRead(joyY), 0, 1023, 50, -50) > thresh  || check_wrong_match() || check_wrong_whip(cal1)) {
         return task_fail();
       }
       //check for timers
@@ -72,7 +76,7 @@ bool joystick_task() {
   } else {
     while (map(analogRead(joyX), 0, 1023, maxbound, -maxbound) < thresh) {
       //check for incorrect inputs
-      if (map(analogRead(joyX), 0, 1023, 50, -50) < -thresh || map(analogRead(joyY), 0, 1023, 50, -50) < -thresh || map(analogRead(joyY), 0, 1023, 50, -50) > thresh) {
+      if (map(analogRead(joyX), 0, 1023, 50, -50) < -thresh || map(analogRead(joyY), 0, 1023, 50, -50) < -thresh || map(analogRead(joyY), 0, 1023, 50, -50) > thresh  || check_wrong_match() || check_wrong_whip(cal1)) {
         return task_fail();
       }
       //check for timer

@@ -13,11 +13,11 @@ unsigned long timer = 0;
 #define joyX A0
 #define joyY A1
 
-int BLUE = 7;
-int RED = 6;
-int YELLOW = 8;
+int BLUE = 9;
+int RED = 10;
+int YELLOW = 11;
 int SUCCESS_LIGHT = 1;
-int FAIL_LIGHT = 1;
+int FAIL_LIGHT = 0;
 int val = 0;
 int del1 = 200;
 int del2 = 500;
@@ -58,22 +58,28 @@ void setup() {
   pinMode(SUCCESS_LIGHT, OUTPUT);
   pinMode(FAIL_LIGHT, OUTPUT);
   pinMode(SPEAKER, OUTPUT);
-
+ 
+  
   Serial.begin(9600); // open the serial port at 9600 bps:
   Wire.begin();
   
   //gyro calibration
   byte status = mpu.begin();
-  Serial.print(F("MPU6050 status: "));
-  Serial.println(status);
+  //Serial.print(F("MPU6050 status: "));
+  //Serial.println(status);
   while(status!=0){ } // stop everything if could not connect to MPU6050
+
+  //testing
+  digitalWrite(RED, HIGH);
+  delay(500);
+  digitalWrite(RED, LOW);
   
-  Serial.println(F("Calculating offsets, do not move MPU6050"));
+  //Serial.println(F("Calculating offsets, do not move MPU6050"));
   delay(1000);
   // mpu.upsideDownMounting = true; // uncomment this line if the MPU6050 is mounted upside-down
   mpu.calcOffsets(); // gyro and accelero
-  Serial.println("Done!\n");
-
+  //Serial.println("Done!\n");
+  
   //setup timer
   timerSetup();
   
