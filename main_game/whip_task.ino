@@ -1,9 +1,11 @@
 //Whip It task game!
 bool whip_task() {
   //Display task
-  lcd.setCursor(3, 0);
+  lcd.clear();
+  lcd.setCursor(3, 1);
   lcd.print(whipString);
-
+  lcd.setCursor(8, 0);
+  lcd.print("SCORE: " + SCORE);
   int count = 10;
   int cal1 = 0;
   int cal2 = 0;
@@ -27,6 +29,11 @@ bool whip_task() {
   while(delta<35)
   {
     Serial.print("/nI am here/n");
+    
+    //check wrong inputs
+    if (check_wrong_match() || check_wrong_joystick()) {
+      return task_fail();
+    }
     
     //check for inputs
     for (int i = 0; i < count; i ++) 
@@ -63,6 +70,4 @@ bool whip_task() {
 
   return task_success();
 
-
-  
 } 

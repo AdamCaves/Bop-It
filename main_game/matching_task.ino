@@ -1,9 +1,12 @@
 //Matching button LED task game!
 bool matching_task() {
   //Display task
-  lcd.setCursor(3, 0);
+  lcd.clear();
+  lcd.setCursor(3, 1);
   lcd.print(matchString);
-
+  lcd.setCursor(8, 0);
+  lcd.print("SCORE: " + SCORE);
+  
   int pinArray[3] = {RED, YELLOW, BLUE};
 
   int pSel = random(0,6);
@@ -85,7 +88,7 @@ bool matching_task() {
   
     // Check for first button press
     while(!digitalRead(pinArray[0])) {
-      if (digitalRead(pinArray[1]) || digitalRead(pinArray[2])) {
+      if (digitalRead(pinArray[1]) || digitalRead(pinArray[2]) || check_wrong_joystick() || check_wrong_whip(cal1)) {
         return task_fail();
       }
       if (timerFail)
@@ -101,7 +104,7 @@ bool matching_task() {
   
     // Check for second button press
     while(!digitalRead(pinArray[1])) {
-      if (digitalRead(pinArray[0]) || digitalRead(pinArray[2])) {
+      if (digitalRead(pinArray[0]) || digitalRead(pinArray[2]) || check_wrong_joystick() || check_wrong_whip(cal1)) {
         return task_fail();
       }
       if (timerFail)
@@ -117,7 +120,7 @@ bool matching_task() {
     delay(50);
     // Check for third button press
     while(!digitalRead(pinArray[2])) {
-      if (digitalRead(pinArray[0]) || digitalRead(pinArray[1])) {
+      if (digitalRead(pinArray[0]) || digitalRead(pinArray[1]) || check_wrong_joystick() || check_wrong_whip(cal1)) {
         return task_fail();
       }
       if (timerFail)
