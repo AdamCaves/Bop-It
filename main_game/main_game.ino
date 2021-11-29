@@ -19,6 +19,7 @@ int YELLOW = 11;
 int START = 12;
 int SUCCESS_LIGHT = 4;
 int FAIL_LIGHT = 2;
+
 int val = 0;
 int del1 = 200;
 int del2 = 500;
@@ -62,6 +63,7 @@ void setup() {
   digitalWrite(FAIL_LIGHT, LOW);
   pinMode(SPEAKER, OUTPUT);
   pinMode(START, INPUT);
+
  
   
   Serial.begin(9600); // open the serial port at 9600 bps:
