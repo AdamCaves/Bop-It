@@ -56,6 +56,7 @@ void setup() {
   pinMode(RED, OUTPUT);
   pinMode(YELLOW, OUTPUT);
   pinMode(SUCCESS_LIGHT, OUTPUT);
+  digitalWrite(SUCCESS_LIGHT, LOW);
   pinMode(FAIL_LIGHT, OUTPUT);
   pinMode(SPEAKER, OUTPUT);
  
@@ -88,7 +89,8 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   //HAVE NOT WRITTEN MAIN CODE YET... MUST FINISH SUB FUNCTIONS FIRST
-  bool k = choose_task();
+  lcd.clear();
+  bool k = matching_task();
   //bool k = joystick_task();
   delay(1000);
 //  Serial.print("\n");

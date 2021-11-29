@@ -14,6 +14,8 @@ bool task_fail() {
   lcd.clear();
   lcd.setCursor(3, 0);
   lcd.print("TASK FAILED");
+  lcd.setCursor(3, 1);
+  lcd.print("GAME OVER");
   SCORE = 0;
   return 0;
 }
