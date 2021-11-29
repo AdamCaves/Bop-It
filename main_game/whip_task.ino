@@ -11,7 +11,6 @@ bool whip_task() {
   int cal2 = 0;
   int delta = 0;
 
-  
   for (int i = 0; i < count; i ++) 
   {
     mpu.update();

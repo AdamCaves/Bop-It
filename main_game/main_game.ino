@@ -16,8 +16,9 @@ unsigned long timer = 0;
 int BLUE = 9;
 int RED = 10;
 int YELLOW = 11;
-int SUCCESS_LIGHT = 1;
-int FAIL_LIGHT = 0;
+int START = 12;
+int SUCCESS_LIGHT = 4;
+int FAIL_LIGHT = 2;
 int val = 0;
 int del1 = 200;
 int del2 = 500;
@@ -56,8 +57,11 @@ void setup() {
   pinMode(RED, OUTPUT);
   pinMode(YELLOW, OUTPUT);
   pinMode(SUCCESS_LIGHT, OUTPUT);
+  digitalWrite(SUCCESS_LIGHT, LOW);
   pinMode(FAIL_LIGHT, OUTPUT);
+  digitalWrite(FAIL_LIGHT, LOW);
   pinMode(SPEAKER, OUTPUT);
+  pinMode(START, INPUT);
  
   
   Serial.begin(9600); // open the serial port at 9600 bps:
@@ -86,16 +90,24 @@ void setup() {
 }
 
 void loop() {
+//  pinMode(SUCCESS_LIGHT, OUTPUT);
+//  digitalWrite(SUCCESS_LIGHT, LOW);
+//  pinMode(FAIL_LIGHT, OUTPUT);
+//  digitalWrite(FAIL_LIGHT, LOW);
   // put your main code here, to run repeatedly:
   //HAVE NOT WRITTEN MAIN CODE YET... MUST FINISH SUB FUNCTIONS FIRST
-  bool k = choose_task();
+  lcd.clear();
+  bool k = matching_task();
   //bool k = joystick_task();
   delay(1000);
 //  Serial.print("\n");
 //  Serial.print(k);
   while (k==0)
   {
-    k = digitalRead(RED);
+    k = digitalRead(START);
   }
   delay(500);
+  digitalWrite(SUCCESS_LIGHT, LOW);
+  digitalWrite(FAIL_LIGHT, LOW);
+  digitalWrite(1, LOW);
 }
