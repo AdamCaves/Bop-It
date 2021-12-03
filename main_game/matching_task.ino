@@ -1,12 +1,15 @@
 //Matching button LED task game!
 bool matching_task() {
+  digitalWrite(SUCCESS_LIGHT, LOW);
+  digitalWrite(FAIL_LIGHT, LOW);
+  digitalWrite(1, LOW);
   //Display task
-//  lcd.clear();
-  lcd.setCursor(3, 1);
-  lcd.print(matchString);
+  lcd.clear();
   lcd.setCursor(3, 0);
+  lcd.print(matchString);
+  lcd.setCursor(3, 1);
   lcd.print("SCORE: ");
-  lcd.setCursor(11, 0);
+  lcd.setCursor(11, 1);
   lcd.print(SCORE);
   
   int pinArray[3] = {RED, YELLOW, BLUE};

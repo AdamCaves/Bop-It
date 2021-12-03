@@ -13,9 +13,11 @@ bool task_fail() {
   Serial.print("Input fail"); // These should be replaced with LCD commands
   lcd.clear();
   lcd.setCursor(3, 0);
-  lcd.print("TASK FAILED");
-  lcd.setCursor(3, 1);
   lcd.print("GAME OVER");
+  lcd.setCursor(3, 1);
+  lcd.print("SCORE: ");
+  lcd.setCursor(11, 1);
+  lcd.print(SCORE);
   SCORE = 0;
   return 0;
 }
@@ -31,12 +33,17 @@ bool timer_fail()
     delay(pause);
     noTone(SPEAKER);
   }
+  
   digitalWrite(FAIL_LIGHT, LOW);
   resetTimer();
   Serial.print("Timer fail"); // These should be replaced with LCD commands
   lcd.clear();
   lcd.setCursor(3, 0);
   lcd.print("OUT OF TIME");
+  lcd.setCursor(3, 1);
+  lcd.print("SCORE: ");
+  lcd.setCursor(11, 1);
+  lcd.print(SCORE);
   SCORE = 0;
   return 0;
 }

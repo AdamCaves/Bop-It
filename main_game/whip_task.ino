@@ -2,16 +2,17 @@
 bool whip_task() {
   //Display task
   lcd.clear();
-  lcd.setCursor(3, 1);
+  lcd.setCursor(3, 0);
   lcd.print(whipString);
-  lcd.setCursor(8, 0);
-  lcd.print("SCORE: " + SCORE);
+  lcd.setCursor(3, 1);
+  lcd.print("SCORE: ");
+  lcd.setCursor(11, 1);
+  lcd.print(SCORE);
   int count = 10;
   int cal1 = 0;
   int cal2 = 0;
   int delta = 0;
 
-  
   for (int i = 0; i < count; i ++) 
   {
     mpu.update();

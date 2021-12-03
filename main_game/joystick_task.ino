@@ -3,7 +3,7 @@ bool joystick_task() {
   
   bool joystick_success = true;
   int xMap, yMap, xValue, yValue;
-  char *flickArray[] = {"up", "down", "left", "right"};
+  char *flickArray[] = {"Up", "Down", "Left", "Right"};
   
   
   //randomize the flick call
@@ -14,10 +14,14 @@ bool joystick_task() {
 
   //Display task
   lcd.clear();
+  lcd.setCursor(1, 0);
+  lcd.print(joystickString);
+  lcd.setCursor(11, 0);
+  lcd.print(*flickArray[joyid]);
   lcd.setCursor(3, 1);
-  lcd.print(joystickString + *flickArray[joyid]);
-  lcd.setCursor(8, 0);
-  lcd.print("SCORE: " + SCORE);
+  lcd.print("SCORE: ");
+  lcd.setCursor(11, 1);
+  lcd.print(SCORE);
   
   //CALIBRATE GYRO
   int count = 10;
@@ -34,7 +38,7 @@ bool joystick_task() {
   startTimer();
   
   //check for inputs
-  if (flickArray[joyid] == "up") {
+  if (flickArray[joyid] == "Right") {
     while (map(analogRead(joyY), 0, 1023, maxbound, -maxbound) < thresh) {
       //check for incorrect inputs
       if (map(analogRead(joyY), 0, 1023, 50, -50) < -thresh || map(analogRead(joyX), 0, 1023, 50, -50) < -thresh || map(analogRead(joyX), 0, 1023, 50, -50) > thresh || check_wrong_match() || check_wrong_whip(cal1)) {
@@ -47,7 +51,7 @@ bool joystick_task() {
       }
     }
     //check for inputs
-  } else if (flickArray[joyid] == "down") {
+  } else if (flickArray[joyid] == "Left") {
     while (map(analogRead(joyY), 0, 1023, maxbound, -maxbound) > -thresh) {
       //check for incorrect inputs
       if (map(analogRead(joyY), 0, 1023, 50, -50) > thresh || map(analogRead(joyX), 0, 1023, 50, -50) < -thresh || map(analogRead(joyX), 0, 1023, 50, -50) > thresh  || check_wrong_match() || check_wrong_whip(cal1)) {
@@ -60,7 +64,7 @@ bool joystick_task() {
       }
     }
     //check for inputs
-  } else if (flickArray[joyid] == "left") {
+  } else if (flickArray[joyid] == "Down") {
     while (map(analogRead(joyX), 0, 1023, maxbound, -maxbound) > -thresh) {
       //check for incorrect inputs
       if (map(analogRead(joyX), 0, 1023, 50, -50) > thresh || map(analogRead(joyY), 0, 1023, 50, -50) < -thresh || map(analogRead(joyY), 0, 1023, 50, -50) > thresh  || check_wrong_match() || check_wrong_whip(cal1)) {
